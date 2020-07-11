@@ -574,7 +574,23 @@ module.exports = class Database extends Observable {
       filters = Object.assign({}, filters, meta.filters);
     }
 
-    let builder = this.knex.select(fields).from(baseDoctype);
+    let builder = this.knex(baseDoctype);
+    if( filters !== undefined && '$scope' in filters ){
+      let scopeFn = meta.$scopes[ filters.$scope ];
+      if( scopeFn !== undefined ) {
+        delete filters.$scope;
+        builder = scopeFn( this.knex, filters )
+      }
+    }
+    for( var f of fields ){
+      if( f.$sum ){
+        builder.sum( f.$sum )
+      } else if( f.$count ){
+        builder.count( f.$count )
+      }else{
+        builder.select( f )
+      }
+    }
 
     this.applyFiltersToBuilder(builder, filters);
 
