@@ -1,6 +1,6 @@
-import ListAndForm from '../pages/ListAndForm';
-import ListAndPrintView from '../pages/ListAndPrintView';
-import Tree from '../components/Tree';
+import ListAndForm from './pages/ListAndForm';
+import ListAndPrintView from './pages/ListAndPrintView';
+import Tree from './components/Tree';
 
 export default [
   {

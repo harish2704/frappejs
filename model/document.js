@@ -647,7 +647,7 @@ module.exports = class BaseDocument extends Observable {
 
   getFrom(doctype, name, fieldname) {
     if (!name) return '';
-    return frappe.db.getCachedValue(doctype, name, fieldname);
+    return frappe.db.getValue(doctype, name, fieldname);
   }
 
   round(value, df = null) {
