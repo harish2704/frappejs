@@ -113,5 +113,14 @@ module.exports = {
             }
             return response.json({});
         }));
+
+        // methods
+        app.post('/api/method/:method', frappe.asyncHandler(async function(request, response) {
+            const out = await frappe.call({
+              method: request.params.method,
+              args: request.body,
+            })
+            return response.json( out );
+        }));
     }
 };

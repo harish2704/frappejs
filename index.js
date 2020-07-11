@@ -99,7 +99,7 @@ module.exports = {
     }
 
     let url = `/api/method/${method}`;
-    let response = await fetch(url, {
+    let response = await fetch(this.getServerURL() + url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
